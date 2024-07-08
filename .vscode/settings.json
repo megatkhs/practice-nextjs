@@ -5,6 +5,8 @@
     "*.css": "tailwindcss"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  }
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
+  },
+  "markuplint.enable": true
 }
