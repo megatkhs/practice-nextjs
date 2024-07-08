@@ -3,5 +3,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   }
 }
