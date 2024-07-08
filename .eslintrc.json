@@ -1,6 +1,14 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:import/recommended", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "plugins": ["unused-imports"],
   "rules": {
+    "unused-imports/no-unused-imports": "error",
     "import/order": [
       "error",
       {
@@ -11,15 +19,23 @@
             "group": "internal",
             "position": "after"
           }
-        ]
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
       }
-    ]
+    ],
+    "react/jsx-sort-props": "error"
   },
   "overrides": [
     // TypeScript
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "extends": ["plugin:import/typescript"],
+      "extends": ["plugin:@typescript-eslint/recommended-type-checked", "plugin:import/typescript"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
       "settings": {
         "import/resolver": {
           "typescript": true,
