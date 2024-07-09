@@ -9,21 +9,32 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prettier": "prettier --write .",
-    "markuplint": "markuplint \"./**/*.tsx\""
+    "markuplint": "markuplint \"./**/*.tsx\"",
+    "prisma": "dotenv -e .env.local -- prisma",
+    "prisma:studio": "pnpm prisma studio",
+    "prisma:db-push": "pnpm prisma db push",
+    "prisma:migrate-dev": "pnpm prisma migrate dev"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@prisma/client": "5.16.1",
+    "bcryptjs": "2.4.3",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
+    "valibot": "0.36.0"
   },
   "devDependencies": {
     "@markuplint/jsx-parser": "4.7.5",
     "@markuplint/react-spec": "4.5.5",
+    "@types/bcryptjs": "2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "7.15.0",
     "@typescript-eslint/parser": "7.15.0",
+    "dotenv-cli": "7.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "eslint-config-prettier": "9.1.0",
@@ -34,6 +45,7 @@
     "markuplint": "4.9.2",
     "postcss": "^8",
     "prettier": "3.3.2",
+    "prisma": "5.16.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

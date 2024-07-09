@@ -21,7 +21,7 @@ export default function RootLayout({
           </Link>
 
           <nav className="items-end">
-            <Link href="/login">ログイン</Link>
+            <Link href="/signup">アカウント登録</Link>
           </nav>
         </header>
 

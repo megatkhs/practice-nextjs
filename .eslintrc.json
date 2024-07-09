@@ -24,14 +24,13 @@
           "order": "asc"
         }
       }
-    ],
-    "react/jsx-sort-props": "error"
+    ]
   },
   "overrides": [
     // TypeScript
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "extends": ["plugin:@typescript-eslint/recommended-type-checked", "plugin:import/typescript"],
+      "extends": ["plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"

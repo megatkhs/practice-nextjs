@@ -8,5 +8,8 @@
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "explicit"
   },
-  "markuplint.enable": true
+  "markuplint.enable": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
