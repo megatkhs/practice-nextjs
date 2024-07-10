@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { signUp } from '@/libs/auth/actions/signUp'
+import { signIn } from '@/libs/auth/actions/signIn'
 import { useValibotForm } from '@/libs/form'
-import { SignUpSchema } from '@/schemas/SignUpSchema'
+import { SignInSchema } from '@/schemas/SignInSchema'
 
-export const SignUpForm = () => {
+export const SignInForm = () => {
   const [error, setError] = useState<string | undefined>(undefined)
   const [isPending, startTransition] = useTransition()
   const { register, handleSubmit } = useValibotForm({
     mode: 'onBlur',
-    schema: SignUpSchema,
+    schema: SignInSchema,
     defaultValues: {
       email: '',
       password: '',
@@ -20,7 +20,7 @@ export const SignUpForm = () => {
     setError(undefined)
 
     startTransition(async () => {
-      const result = await signUp(values)
+      const result = await signIn(values)
 
       if (!result.isSuccess) {
         setError(result.error?.message)

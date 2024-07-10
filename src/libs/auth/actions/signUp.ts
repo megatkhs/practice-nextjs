@@ -4,7 +4,7 @@ import { hash } from 'bcryptjs'
 import * as v from 'valibot'
 import { getUserByEmail } from '@/db/user'
 import { db } from '@/libs/db'
-import { SignUpInputSchema } from './schema'
+import { SignUpSchema } from '@/schemas/SignUpSchema'
 
 type SignUpReturn =
   | {
@@ -18,12 +18,10 @@ type SignUpReturn =
       }
     }
 
-export const signUp = async (
-  input: v.InferInput<typeof SignUpInputSchema>
-): Promise<SignUpReturn> => {
+export const signUp = async (input: v.InferInput<typeof SignUpSchema>): Promise<SignUpReturn> => {
   try {
-    const output = v.parse(SignUpInputSchema, input)
-    const user = await getUserByEmail(output.email)
+    const { email, password } = v.parse(SignUpSchema, input)
+    const user = await getUserByEmail(email)
 
     if (user !== null) {
       return {
@@ -34,18 +32,12 @@ export const signUp = async (
       }
     }
 
-    const hashedPassword = await hash(output.password, 10)
+    const hashedPassword = await hash(password, 10)
 
-    const { id } = await db.user.create({
+    await db.user.create({
       data: {
-        email: output.email,
+        email,
         password: hashedPassword,
-      },
-    })
-
-    await db.profile.create({
-      data: {
-        userId: id,
       },
     })
 

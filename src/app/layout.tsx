@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { auth } from '@/libs/auth'
+import { signOut } from '@/libs/auth/nextAuth'
 import type { Metadata } from 'next'
 import './globals.css'
 
@@ -7,11 +9,12 @@ export const metadata: Metadata = {
   description: 'Next.jsの素振りをするプロジェクトです',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
   return (
     <html lang="ja">
       <body>
@@ -20,8 +23,23 @@ export default function RootLayout({
             Practice Next.js
           </Link>
 
-          <nav className="items-end">
-            <Link href="/signup">アカウント登録</Link>
+          <nav className="flex items-end gap-2">
+            {session === null ? (
+              <>
+                <Link href="/signup">アカウント登録</Link>
+                <Link href="/signin">ログイン</Link>
+              </>
+            ) : (
+              <form
+                action={async () => {
+                  'use server'
+
+                  await signOut()
+                }}
+              >
+                <button type="submit">ログアウト</button>
+              </form>
+            )}
           </nav>
         </header>
 
